@@ -1,0 +1,34 @@
+{
+  "carrosEstacionados": [
+    {
+      "id": 1,
+      "placa": "hhh-3333",
+      "cor": "Preto",
+      "marca": "Fiat",
+      "modelo": "Palio",
+      "dataHoraEntrada": "10/10/2020 13:45:00",
+      "dataHoraSaida": "",
+      "status": "true"
+    },
+    {
+      "id": 3,
+      "placa": "hhh-3335",
+      "cor": "Prata",
+      "marca": "Wolksvagem",
+      "modelo": "Gol",
+      "dataHoraEntrada": "10/10/2020 13:45:00",
+      "dataHoraSaida": "",
+      "status": "true"
+    },
+    {
+      "id": 1,
+      "placa": "hhh-3334",
+      "cor": "Vermelho",
+      "marca": "Chevrolet",
+      "modelo": "Corsa",
+      "dataHoraEntrada": "10/10/2020 13:45:00",
+      "dataHoraSaida": "",
+      "status": "true"
+    }
+  ]
+}
