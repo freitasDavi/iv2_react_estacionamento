@@ -11,22 +11,24 @@ export default class Patio extends Component {
   }
 
   componentDidMount() {
-    this.loadApi()
+    this.loadApi();
   }
 
   loadApi() {
-    fetch('http://localhost:3001/carrosEstacionados')
-      .then(res => res.json())
-      .then(res => this.setState({
-        carrosEstacionados: res
-      }))
+    fetch("http://localhost:3001/carrosEstacionados")
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          carrosEstacionados: res,
+        })
+      );
   }
 
   renderCars() {
-    let carrosEstacionados = this.state.carrosEstacionados
+    let carrosEstacionados = this.state.carrosEstacionados;
 
-    console.log(carrosEstacionados)
     return carrosEstacionados.map((index) => {
+      if (index.status === "true") {
         return (
           <tr>
             <td>{index.placa}</td>
@@ -34,10 +36,73 @@ export default class Patio extends Component {
             <td>{index.marca}</td>
             <td>{index.cor}</td>
             <td>{index.dataHoraEntrada}</td>
-            <td><button className="btn btn-success">Saída</button></td>
+            <td>
+              <button
+                className="btn btn-success"
+                onClick={() => {
+                  this.changeStatus(index);
+                }}
+              >
+                Saída
+              </button>
+            </td>
           </tr>
-        )
-    })
+        );
+      }
+    });
+  }
+
+  dateNow() {
+    let dataHoraAtual = new Date();
+    let dataHoraTratada =
+      dataHoraAtual.getDate() +
+      "/" +
+      parseInt(dataHoraAtual.getMonth() + 1) +
+      "/" +
+      dataHoraAtual.getFullYear() +
+      " " +
+      dataHoraAtual.getHours() +
+      ":" +
+      dataHoraAtual.getMinutes() +
+      ":" +
+      dataHoraAtual.getSeconds() +
+      "";
+
+    return dataHoraTratada;
+  }
+
+  changeStatus(carroSelecionado) {
+    let carrosState = this.state.carrosEstacionados
+
+    let carroSaida = {
+      placa: carroSelecionado.placa,
+      cor: carroSelecionado.cor,
+      marca: carroSelecionado.marca,
+      modelo: carroSelecionado.modelo,
+      dataHoraEntrada: carroSelecionado.dataHoraEntrada,
+      dataHoraSaida: this.dateNow(),
+      status: "false",
+    };
+
+    fetch("http://localhost:3001/carrosEstacionados/" + carroSelecionado.id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(carroSaida),
+    }).then(() => {
+
+      for (let index in carrosState) {
+        if (carrosState[index].id === carroSelecionado.id) {
+          carrosState[index].status === "false" ? carrosState[index].status = "true" : carrosState[index].status = "false"
+
+          this.setState({
+            carrosEstacionados: carrosState
+          })
+        }
+      }
+
+    });
   }
 
   render() {
@@ -58,9 +123,7 @@ export default class Patio extends Component {
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
-            {this.renderCars()}
-            </tbody>
+            <tbody>{this.renderCars()}</tbody>
           </table>
         </div>
       </div>

@@ -1,14 +1,14 @@
 {
   "carrosEstacionados": [
     {
-      "id": 1,
       "placa": "hhh-3333",
       "cor": "Preto",
       "marca": "Fiat",
       "modelo": "Palio",
       "dataHoraEntrada": "10/10/2020 13:45:00",
-      "dataHoraSaida": "",
-      "status": "true"
+      "dataHoraSaida": "16/9/2020 16:37:35",
+      "status": "false",
+      "id": 1
     },
     {
       "id": 3,
@@ -29,6 +29,36 @@
       "dataHoraEntrada": "10/10/2020 13:45:00",
       "dataHoraSaida": "",
       "status": "true"
+    },
+    {
+      "placa": "MPF-2429",
+      "cor": "Prata ",
+      "marca": "Hyundai",
+      "modelo": "HB-20",
+      "dataHoraEntrada": "16/8/2020 15:48:48",
+      "dataHoraSaida": "16/9/2020 16:33:30",
+      "status": "true",
+      "id": 4
+    },
+    {
+      "placa": "mpl-6325",
+      "cor": "Branco",
+      "marca": "Citroen",
+      "modelo": "C3",
+      "dataHoraEntrada": "16/8/2020 16:11:35",
+      "dataHoraSaida": "",
+      "status": "true",
+      "id": 5
+    },
+    {
+      "placa": "XXX-1234",
+      "cor": "Preta",
+      "marca": "Mitsubishi",
+      "modelo": "Eclipse",
+      "dataHoraEntrada": "16/8/2020 16:38:6",
+      "dataHoraSaida": "",
+      "status": "true",
+      "id": 6
     }
   ]
 }
