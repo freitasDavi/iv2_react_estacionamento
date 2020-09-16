@@ -1,12 +1,15 @@
 import React from "react";
+import { BrowserRouter as Router, Link, Route} from "react-router-dom";
+import Patio from "../Patio/Patio";
+import PatioEntrada from "../PatioEntrada/PatioEntrada";
 
 export default () => {
   return (
-    <div>
+    <Router>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           React Estacio
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,18 +24,22 @@ export default () => {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/entrada">
                 Entrada <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/">
                 Saída
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
       </nav>
-    </div>
+
+
+      <Route exact path="/" component={Patio} />
+      <Route path="/entrada" component={PatioEntrada} />
+    </Router>
   );
 };

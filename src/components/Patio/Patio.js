@@ -10,6 +10,36 @@ export default class Patio extends Component {
     };
   }
 
+  componentDidMount() {
+    this.loadApi()
+  }
+
+  loadApi() {
+    fetch('http://localhost:3001/carrosEstacionados')
+      .then(res => res.json())
+      .then(res => this.setState({
+        carrosEstacionados: res
+      }))
+  }
+
+  renderCars() {
+    let carrosEstacionados = this.state.carrosEstacionados
+
+    console.log(carrosEstacionados)
+    return carrosEstacionados.map((index) => {
+        return (
+          <tr>
+            <td>{index.placa}</td>
+            <td>{index.modelo}</td>
+            <td>{index.marca}</td>
+            <td>{index.cor}</td>
+            <td>{index.dataHoraEntrada}</td>
+            <td><button className="btn btn-success">Saída</button></td>
+          </tr>
+        )
+    })
+  }
+
   render() {
     return (
       <div id="patioCarrosEstacionados">
@@ -28,7 +58,9 @@ export default class Patio extends Component {
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+            {this.renderCars()}
+            </tbody>
           </table>
         </div>
       </div>
